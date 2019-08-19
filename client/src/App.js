@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from './Home/home';
+import Archive from './Archive/archive';
 
 class App extends Component {
     constructor(props) {
@@ -8,26 +9,25 @@ class App extends Component {
         this.state = { apiResponse: "" };
     }
 
-    callAPI() {
-        fetch("http://localhost:9000/testAPI")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }))
-            .catch(err => err);
-    }
-
-    componentDidMount() {
-        this.callAPI();
-    }
-
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">{this.state.apiResponse}</p>
-            </div>
+            <Router>
+              <div>
+                <nav>
+                  <ul>
+                    <li>
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                      <Link to="/archive/">Archive</Link>
+                    </li>
+                  </ul>
+                </nav>
+
+                <Route path="/" exact component={Home} />
+                <Route path="/archive/" component={Archive} />
+              </div>
+            </Router>
         );
     }
 }
