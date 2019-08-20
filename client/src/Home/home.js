@@ -18,6 +18,11 @@ class Home extends Component {
     }
 
     makeMusic = () => {
+        const synth = new Tone.MembraneSynth().toMaster();
+        const words = this.state.textContent.split(" ");
+        let notes = words.map(word => {
+
+        })
         //make words into notes
         //when it is done, buttons should read "play" and "reset"
         //play
