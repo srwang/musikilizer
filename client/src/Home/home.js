@@ -1,9 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { TextField, Button } from '@material-ui/core';
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = { apiResponse: "" };
+        this.state = { 
+            apiResponse: "",
+            textContent: "", 
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.makeMusic = this.makeMusic.bind(this);
+    }
+
+    handleChange = type => event => {
+        let value = event.target.value
+        this.setState({ [type]: value })
+    }
+
+    makeMusic = () => {
+        //make words into notes
+        //when it is done, buttons should read "play" and "reset"
+        //play
+        //reset
     }
 
     callAPI() {
@@ -19,7 +37,20 @@ class Home extends Component {
 
     render() {
         return (
-           <div>home page</div>
+            <Fragment>
+                <div>Input your text to translate into music</div>
+                <TextField 
+                    multiline
+                    value={this.state.textContent}
+                    onChange={this.handleChange('textContent')}
+                >
+                </TextField>
+                <Button
+                    onClick={this.makeMusic()}
+                >
+                    Submit
+                </Button>
+            </Fragment>
         );
     }
 }

@@ -13,6 +13,9 @@ class App extends Component {
         return (
             <Router>
               <div>
+                <header>
+                    <p id="header-text">Hi, User</p>
+                </header>
                 <nav>
                   <ul>
                     <li>
